@@ -4,11 +4,11 @@
 #
 Name     : perl-File-Type
 Version  : 0.22
-Release  : 9
+Release  : 10
 URL      : https://cpan.metacpan.org/authors/id/P/PM/PMISON/File-Type-0.22.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PM/PMISON/File-Type-0.22.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfile-type-perl/libfile-type-perl_0.22-3.debian.tar.xz
-Summary  : No detailed summary available
+Summary  : Perl/CPAN Module File::Type
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-File-Type-license = %{version}-%{release}
@@ -24,6 +24,7 @@ Install using the standard Module::Build method:
 Summary: dev components for the perl-File-Type package.
 Group: Development
 Provides: perl-File-Type-devel = %{version}-%{release}
+Requires: perl-File-Type = %{version}-%{release}
 
 %description dev
 dev components for the perl-File-Type package.
@@ -42,7 +43,7 @@ license components for the perl-File-Type package.
 cd ..
 %setup -q -T -D -n File-Type-0.22 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/File-Type-0.22/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/File-Type-0.22/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
