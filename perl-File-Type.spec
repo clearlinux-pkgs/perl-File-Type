@@ -4,14 +4,15 @@
 #
 Name     : perl-File-Type
 Version  : 0.22
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/P/PM/PMISON/File-Type-0.22.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PM/PMISON/File-Type-0.22.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfile-type-perl/libfile-type-perl_0.22-3.debian.tar.xz
-Summary  : Perl/CPAN Module File::Type
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-File-Type-license = %{version}-%{release}
+Requires: perl-File-Type-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -38,18 +39,28 @@ Group: Default
 license components for the perl-File-Type package.
 
 
+%package perl
+Summary: perl components for the perl-File-Type package.
+Group: Default
+Requires: perl-File-Type = %{version}-%{release}
+
+%description perl
+perl components for the perl-File-Type package.
+
+
 %prep
 %setup -q -n File-Type-0.22
-cd ..
-%setup -q -T -D -n File-Type-0.22 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libfile-type-perl_0.22-3.debian.tar.xz
+cd %{_builddir}/File-Type-0.22
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/File-Type-0.22/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/File-Type-0.22/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -59,7 +70,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -68,7 +79,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-File-Type
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-File-Type/deblicense_copyright
+cp %{_builddir}/File-Type-0.22/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-File-Type/aaef585a6eb1da6fa99db135801024dc6fe42d4e
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -81,8 +92,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/File/Type.pm
-/usr/lib/perl5/vendor_perl/5.28.2/File/Type/Builder.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -91,4 +100,9 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-File-Type/deblicense_copyright
+/usr/share/package-licenses/perl-File-Type/aaef585a6eb1da6fa99db135801024dc6fe42d4e
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/File/Type.pm
+/usr/lib/perl5/vendor_perl/5.30.1/File/Type/Builder.pm
