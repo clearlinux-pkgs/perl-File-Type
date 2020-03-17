@@ -4,7 +4,7 @@
 #
 Name     : perl-File-Type
 Version  : 0.22
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/P/PM/PMISON/File-Type-0.22.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PM/PMISON/File-Type-0.22.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfile-type-perl/libfile-type-perl_0.22-3.debian.tar.xz
@@ -79,7 +79,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-File-Type
-cp %{_builddir}/File-Type-0.22/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-File-Type/aaef585a6eb1da6fa99db135801024dc6fe42d4e
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-File-Type/aaef585a6eb1da6fa99db135801024dc6fe42d4e
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -104,5 +104,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/File/Type.pm
-/usr/lib/perl5/vendor_perl/5.30.1/File/Type/Builder.pm
+/usr/lib/perl5/vendor_perl/5.30.2/File/Type.pm
+/usr/lib/perl5/vendor_perl/5.30.2/File/Type/Builder.pm
