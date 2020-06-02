@@ -4,7 +4,7 @@
 #
 Name     : perl-File-Type
 Version  : 0.22
-Release  : 14
+Release  : 15
 URL      : https://cpan.metacpan.org/authors/id/P/PM/PMISON/File-Type-0.22.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PM/PMISON/File-Type-0.22.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfile-type-perl/libfile-type-perl_0.22-3.debian.tar.xz
@@ -104,5 +104,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.2/File/Type.pm
-/usr/lib/perl5/vendor_perl/5.30.2/File/Type/Builder.pm
+/usr/lib/perl5/vendor_perl/5.30.3/File/Type.pm
+/usr/lib/perl5/vendor_perl/5.30.3/File/Type/Builder.pm
